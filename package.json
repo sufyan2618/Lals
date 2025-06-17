@@ -9,11 +9,12 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "author": "Usman",
+  "author": "Sufyan",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-ejs-layouts": "^2.5.1",
