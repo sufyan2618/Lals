@@ -3,7 +3,7 @@ let router = express.Router();
 let multer = require("multer");
 const cloudinary = require("../../lib/cloudinary");
 const storage =multer.memoryStorage();
-const upload = multer({ storage: storage }).single("picture");
+const upload = multer({ storage: storage })
 
 let Product = require("../../models/product.model");
 
@@ -22,7 +22,7 @@ router.get("/admin/products/edit/:id", async (req, res) => {
 });
 
 
-router.post("/admin/products/edit/:id", upload, async (req, res) => {
+router.post("/admin/products/edit/:id", upload.single("file"), async (req, res) => {
   try {
     // Find the product by ID
     let product = await Product.findById(req.params.id);
@@ -59,24 +59,47 @@ router.post("/admin/products/edit/:id", upload, async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 });
+
+
+
+
 router.get("/admin/products/create", (req, res) => {
   // if (req.query.title) return res.send(req.query);
   // res.send("This is products creat page");
   res.render("admin/product-form", { layout: "admin/admin-layout" });
 });
-router.post(
-  "/admin/products/create",
-  upload.single("file"),
-  async (req, res) => {
-    // return res.send(req.file);
+
+
+
+router.post("/admin/products/create", upload.single("file"), async (req, res) => {
+  try {
     let newProduct = new Product(req.body);
-    if (req.file) newProduct.picture = req.file.filename;
-    newProduct.isFeatured = req.body.isFeatured === 'on'; // Convert to boolean
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Product Picture is required" });
+    }
+
+    const base64Image = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+
+    const result = await cloudinary.uploader.upload(base64Image, {
+      folder: "products",
+    });
+
+    newProduct.picture = result.secure_url;
+    newProduct.isFeatured = req.body.isFeatured === "on"; // boolean conversion
+
     await newProduct.save();
-    // return res.send(newProduct);
     return res.redirect("/admin/products");
+
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return res.status(500).send("Internal Server Error");
   }
-);
+});
+
+
+
+
 router.get("/admin/products/:page?", async (req, res) => {
   let page = req.params.page ? Number(req.params.page) : 1;
   let pageSize = 5;
