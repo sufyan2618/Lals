@@ -1,0 +1,461 @@
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@font-face {
+    font-family: 'Montserrat Regular' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Montserrat Regular'), url('Montserrat-Regular.woff') format('woff');
+}
+
+body {
+    margin-top: 180px;
+    font-family: 'Montserrat Regular';
+}
+
+/* Ribbon Section */
+.ribbon {
+    background-color: #E2F4E8;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+#icon {
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+#phone {
+    font-size: 0.8rem;
+    padding-left: 10px;
+    font-weight: 300;
+    color: black;
+}
+
+/* Logo Section */
+.logo {
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.delivery {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-shrink: 0;
+}
+
+#truck {
+    font-size: 15px;
+}
+
+.pak {
+    display: flex;
+    align-items: center;
+}
+
+.pak p {
+    font-size: 17px;
+    margin: 0 10px;
+    white-space: nowrap;
+}
+
+.pak img {
+    width: 20px;
+    height: auto;
+}
+
+.centre {
+    font-size: 60px;
+    font-weight: 500;
+    font-family: 'Montserrat Regular';
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Icons Section */
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 17px;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.icons i {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.icons a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    right: 0;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Search Box */
+.search-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-box {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    width: 300px;
+    max-width: 90vw;
+}
+
+.search-box.active {
+    display: block;
+}
+
+.search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 0;
+}
+
+.search-button {
+    background-color: #E2F4E8;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.search-button:hover {
+    background-color: #c5e0cc;
+}
+
+/* Line Separator */
+.line {
+    border-bottom: 0.5px solid #645c5c52;
+    margin: 0 30px;
+}
+
+/* Option Bar */
+.option-bar {
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.option-bar span {
+    flex-shrink: 0;
+}
+
+.option-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.option-bar li {
+    margin: 0;
+}
+
+.option-bar a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.option-bar a:hover {
+    background-color: #e2e2e2;
+}
+
+/* Mobile Menu Toggle (Hidden by default) */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Responsive Design */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+    .logo {
+        padding: 0 15px;
+    }
+    
+    .centre {
+        font-size: 50px;
+    }
+    
+    .delivery {
+        margin-left: 0;
+    }
+    
+    .icons {
+        gap: 10px;
+    }
+    
+    .line {
+        margin: 0 15px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        margin-top: 160px;
+    }
+    
+    .logo {
+        height: 70px;
+        padding: 0 10px;
+    }
+    
+    .centre {
+        font-size: 40px;
+    }
+    
+    .pak p {
+        font-size: 14px;
+        margin: 0 8px;
+    }
+    
+    .icons {
+        font-size: 16px;
+        gap: 8px;
+    }
+    
+    .icons i {
+        padding: 8px;
+    }
+    
+    .option-bar {
+        height: 50px;
+        font-size: 14px;
+        padding: 0 10px;
+        gap: 15px;
+    }
+    
+    .option-bar ul {
+        gap: 10px;
+    }
+    
+    .search-box {
+        width: 250px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    body {
+        margin-top: 140px;
+    }
+    
+    .ribbon {
+        height: 35px;
+        padding: 0 5px;
+    }
+    
+    #phone {
+        font-size: 0.7rem;
+        padding-left: 5px;
+    }
+    
+    .logo {
+        height: 60px;
+        padding: 0 5px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .delivery {
+        order: 1;
+        flex: 0 0 auto;
+    }
+    
+    .centre {
+        font-size: 32px;
+        order: 2;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .icons {
+        order: 3;
+        flex: 0 0 auto;
+        font-size: 14px;
+        gap: 5px;
+    }
+    
+    .icons i {
+        padding: 5px;
+    }
+    
+    .pak p {
+        font-size: 12px;
+        margin: 0 5px;
+    }
+    
+    .pak img {
+        width: 16px;
+    }
+    
+    .option-bar {
+        height: 45px;
+        font-size: 12px;
+        padding: 0 5px;
+        gap: 10px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .option-bar ul {
+        gap: 8px;
+    }
+    
+    .option-bar a {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .search-box {
+        width: 200px;
+        padding: 8px;
+    }
+    
+    .search-input {
+        font-size: 12px;
+        padding: 6px;
+    }
+    
+    .search-button {
+        padding: 6px 10px;
+    }
+    
+    .dropdown-content {
+        min-width: 120px;
+    }
+    
+    .dropdown-content a {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .line {
+        margin: 0 5px;
+    }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 320px) {
+    .centre {
+        font-size: 28px;
+    }
+    
+    .pak p {
+        display: none;
+    }
+    
+    .option-bar {
+        font-size: 11px;
+    }
+    
+    .search-box {
+        width: 180px;
+    }
+}
+
+/* Landscape Mobile Orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        margin-top: 120px;
+    }
+    
+    .ribbon {
+        height: 30px;
+    }
+    
+    .logo {
+        height: 50px;
+    }
+    
+    .centre {
+        font-size: 30px;
+    }
+    
+    .option-bar {
+        height: 40px;
+    }
+}
