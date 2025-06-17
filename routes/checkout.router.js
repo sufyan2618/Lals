@@ -1,15 +1,17 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const router = express.Router();
-const Checkout = require("../models/checkout.model"); // Import the Checkout model
+const Checkout = require("../models/checkout.model"); 
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 //node mailer setup
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Use your email service provider
     auth: {
-        user: 'saudshakeel3109@gmail.com', // Your email address
-        pass: 'navv lkuz idhz kfzs' // Your email password or app password
+        user: process.env.USER_EMAIL, 
+        pass: process.env.USER_PASSWORD 
     }
 });
 

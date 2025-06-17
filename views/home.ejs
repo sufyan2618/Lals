@@ -256,7 +256,7 @@
                     <h4 class="card-title">Price :
                         <%= product.price %> PKR
                     </h4>
-                    <a href="/add-to-cart/<%= product._id %>" class="btn btn-primary">Add To Cart</a>
+                    <a href="/add-to-cart/<%= product._id %>" onclick="alert('Added to cart successfully')" class="btn btn-primary">Add To Cart</a>
                     <% if (customerId) { %>
                         <button class="btn btn-outline-primary add-to-wishlist" 
                                 data-product-id="<%=product._id%>">
@@ -285,4 +285,5 @@
             }
         });
     });
+
     </script>

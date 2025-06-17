@@ -1,22 +1,18 @@
 const express = require("express");
 let router = express.Router();
 let multer = require("multer");
+const cloudinary = require("../../lib/cloudinary");
+const storage =multer.memoryStorage();
+const upload = multer({ storage: storage }).single("picture");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads"); // Directory to store files
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`); // Unique file name
-  },
-});
-const upload = multer({ storage: storage });
 let Product = require("../../models/product.model");
 
 router.get("/admin/products/delete/:id", async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   return res.redirect("back");
 });
+
+
 router.get("/admin/products/edit/:id", async (req, res) => {
   let product = await Product.findById(req.params.id);
   return res.render("admin/product-edit-form", {
@@ -24,7 +20,9 @@ router.get("/admin/products/edit/:id", async (req, res) => {
     layout: "admin/admin-layout",
   });
 });
-router.post("/admin/products/edit/:id", upload.single("file"), async (req, res) => {
+
+
+router.post("/admin/products/edit/:id", upload, async (req, res) => {
   try {
     // Find the product by ID
     let product = await Product.findById(req.params.id);
@@ -38,9 +36,15 @@ router.post("/admin/products/edit/:id", upload.single("file"), async (req, res) 
     product.price = req.body.price;
 
     // Check if a new file was uploaded
-    if (req.file) {
-      product.picture = req.file.filename; // Update the picture with the new file
+    if (!req.file) {
+      return res.status(400).json({ message: "Product Picture is required" });
     }
+    const base64Image = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
+
+    const result = await cloudinary.uploader.upload(base64Image,{
+      folder: "products",
+    });
+    product.picture = result.secure_url;
   
     product.isFeatured = req.body.isFeatured === 'on'; // Convert to boolean
 
