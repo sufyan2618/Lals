@@ -75,7 +75,7 @@
                 <td><%= products[index].description %></td>
                 <td><%= products[index].price %></td>
                 <td><%= products[index].isFeatured ? 'Yes' : 'No' %></td>
-                <td><img src="/<%= products[index].picture %>" width="70px" height="70px"/> </td>
+                <td><img src="<%= products[index].picture %>" width="70px" height="70px"/> </td>
                 <td>
                     <a href="/admin/products/edit/<%= products[index]._id %>" class="btn btn-warning">Edit</a>
                     <a href="/admin/products/delete/<%= products[index]._id %>" class="btn btn-danger">Del</a>
