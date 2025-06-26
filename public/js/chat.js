@@ -13,7 +13,7 @@ window.onload = () => {
 };
 
 // Handle incoming messages
-ws.onmessage = (event) => {
+socket.onmessage = (event) => {
     const response = JSON.parse(event.data);
     appendMessage('bot', response.message);
 };
@@ -23,7 +23,7 @@ sendButton.onclick = () => {
     const message = userInput.value;
     if (message.trim()) {
         appendMessage('user', message);
-        ws.send(message);
+        socket.send(message);
         userInput.value = '';
     }
 };
