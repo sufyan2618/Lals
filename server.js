@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -8,7 +9,6 @@ const expressWs = require("express-ws");
 const connectDb = require("./lib/connectDb");
 const http = require("http");
 const server = http.createServer(app);
-const app = express();
 expressWs(app, server);
 
 // Middleware
