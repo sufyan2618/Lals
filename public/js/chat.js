@@ -1,5 +1,6 @@
-// Initialize WebSocket connection
-const ws = new WebSocket('ws://' + window.location.host + '/chatbot');
+const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+const socket = new WebSocket(protocol + window.location.host + '/chatbot');
+
 const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-message');
 const sendButton = document.getElementById('send-message');

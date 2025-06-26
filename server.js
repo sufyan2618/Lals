@@ -6,8 +6,10 @@ const bcrypt = require("bcrypt");
 const expressLayouts = require("express-ejs-layouts");
 const expressWs = require("express-ws");
 const connectDb = require("./lib/connectDb");
+const http = require("http");
+const server = http.createServer(app);
 const app = express();
-expressWs(app);
+expressWs(app, server);
 
 // Middleware
 app.use(cookieParser());
@@ -179,7 +181,7 @@ app.delete("/remove-from-cart/:id", (req, res) => {
 
 // Server start
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server is running on https://lals-m9p7.onrender.com`);
   connectDb();
 });
